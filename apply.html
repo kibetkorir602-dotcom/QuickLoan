@@ -1,735 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>QuickLoan | Fast M-Pesa Loans - Instant Approval</title>
 
-    <!-- SEO Meta Tags -->
-    <meta
-      name="description"
-      content="Get instant loans to M-Pesa in minutes. No paperwork, no guarantors. Low interest rates, flexible repayment. Apply now!"
-    />
-    <meta
-      name="keywords"
-      content="instant loans, M-Pesa loans, Kenya loans, Nigeria loans, quick cash, emergency loans"
-    />
-    <meta name="author" content="QuickLoan" />
-    <meta name="theme-color" content="#059669" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>QuickLoan | Fast M-Pesa Loans - Instant Approval</title>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
-      rel="stylesheet"
-    />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Get instant loans to M-Pesa in minutes. No paperwork, no guarantors. Low interest rates, flexible repayment. Apply now!" />
+  <meta name="keywords"
+    content="instant loans, M-Pesa loans, Kenya loans, Nigeria loans, quick cash, emergency loans" />
+  <meta name="author" content="QuickLoan" />
+  <meta name="theme-color" content="#059669" />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+    rel="stylesheet" />
 
-    <script src="./script.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AXIggvGGvXozbZhdkvizPLd89nVYW8KoyNlHO0gHx7hjY_Ah_IfgXihUQGf7T2HUUVYx-D5SNncM0CtU&components=buttons,card-fields&currency=USD"></script>
+  <script src="./script.js"></script>
 
-    <!-- Kora Payments SDK -->
-    <script src="https://korablobstorage.blob.core.windows.net/modal-bucket/korapay-collections.min.js"></script>
+  <!-- PayPal SDK -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AXIggvGGvXozbZhdkvizPLd89nVYW8KoyNlHO0gHx7hjY_Ah_IfgXihUQGf7T2HUUVYx-D5SNncM0CtU&components=buttons,card-fields&currency=USD"></script>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+  <!-- Kora Payments SDK -->
+  <script src="https://korablobstorage.blob.core.windows.net/modal-bucket/korapay-collections.min.js"></script>
 
-      body {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ec 100%);
-        min-height: 100vh;
-        color: #1e293b;
-      }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      :root {
-        --primary: #0f172a;
-        --primary-light: #1e293b;
-        --accent: #059669;
-        --accent-dark: #047857;
-        --accent-light: #10b981;
-        --accent-glow: rgba(5, 150, 105, 0.15);
-        --white: #ffffff;
-        --gray-50: #f8fafc;
-        --gray-100: #f1f5f9;
-        --gray-200: #e2e8f0;
-        --gray-300: #cbd5e1;
-        --gray-600: #475569;
-        --gray-800: #1e293b;
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08),
-          0 8px 10px -6px rgba(0, 0, 0, 0.02);
-        --shadow-lg: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
-        --radius-sm: 12px;
-        --radius-md: 16px;
-        --radius-lg: 24px;
-        --radius-xl: 32px;
-        --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ec 100%);
+      min-height: 100vh;
+      color: #1e293b;
+    }
 
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px 16px 40px;
-      }
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #059669;
+      --accent-dark: #047857;
+      --accent-light: #10b981;
+      --accent-glow: rgba(5, 150, 105, 0.15);
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08),
+        0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-lg: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-      .header {
-        text-align: center;
-        margin-bottom: 32px;
-      }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
 
-      .logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 1.8rem;
-        font-weight: 800;
-        background: linear-gradient(
-          135deg,
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg,
           var(--primary) 0%,
-          var(--accent) 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 8px;
+          var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .logo i {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2rem;
+    }
+
+    .tagline {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+
+    .stepper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+
+    .step.active {
+      color: var(--accent);
+    }
+
+    .step.completed {
+      color: var(--accent);
+    }
+
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .step.active .step-dot {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .step.completed .step-dot {
+      background: var(--accent);
+      color: white;
+    }
+
+    .step-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--gray-200);
+      margin: 0 4px;
+    }
+
+    .step.completed+.step-connector {
+      background: var(--accent);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      .logo i {
-        background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        font-size: 2rem;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .card-subtitle {
+      color: var(--gray-600);
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--gray-800);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 60px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .currency-toggle {
+      display: flex;
+      gap: 12px;
+      background: var(--gray-100);
+      padding: 4px;
+      border-radius: 60px;
+      width: fit-content;
+    }
+
+    .currency-btn {
+      padding: 8px 24px;
+      border-radius: 60px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      background: transparent;
+      color: var(--gray-600);
+    }
+
+    .currency-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .loan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .loan-card {
+      background: var(--gray-50);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 20px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .loan-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-light);
+      box-shadow: var(--shadow-md);
+    }
+
+    .loan-card.selected {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.15);
+    }
+
+    .loan-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .loan-fee {
+      font-size: 0.7rem;
+      color: var(--gray-600);
+      margin-top: 6px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .payment-method {
+      flex: 1;
+      padding: 14px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .payment-method.selected {
+      border-color: var(--accent);
+      background: #ecfdf5;
+    }
+
+    .payment-method i {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* Card Fields Styling - PayPal Hosted Fields */
+    .card-field-container {
+      margin-bottom: 16px;
+    }
+
+    .card-field {
+      width: 100%;
+      height: 52px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 60px;
+      padding: 0 18px;
+      transition: var(--transition);
+      background: var(--white);
+    }
+
+    .card-field:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .notification-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 360px;
+    }
+
+    .notification {
+      background: var(--white);
+      border-radius: 60px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.2);
+      border-left: 4px solid var(--accent);
+      animation: slideInRight 0.3s ease;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
       }
 
-      .tagline {
-        color: var(--gray-600);
-        font-size: 0.95rem;
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .notification-icon {
+      width: 32px;
+      height: 32px;
+      background: #ecfdf5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      max-width: 420px;
+      width: 90%;
+      padding: 28px;
+      text-align: center;
+      animation: scaleIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
 
-      .stepper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 32px;
-        flex-wrap: wrap;
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
       }
 
-      .step {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--gray-600);
+      to {
+        opacity: 1;
+        transform: scale(1);
       }
+    }
 
-      .step.active {
-        color: var(--accent);
-      }
-      .step.completed {
-        color: var(--accent);
-      }
+    .modal-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
 
-      .step-dot {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: var(--gray-200);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 0.8rem;
-        transition: var(--transition);
-      }
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: inline-block;
+      margin-right: 8px;
+    }
 
-      .step.active .step-dot {
-        background: var(--accent);
-        color: white;
-        box-shadow: 0 0 0 3px var(--accent-glow);
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      .step.completed .step-dot {
-        background: var(--accent);
-        color: white;
-      }
+    .text-center {
+      text-align: center;
+    }
 
-      .step-connector {
-        width: 40px;
-        height: 2px;
-        background: var(--gray-200);
-        margin: 0 4px;
-      }
+    .mt-4 {
+      margin-top: 16px;
+    }
 
-      .step.completed + .step-connector {
-        background: var(--accent);
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px 12px 32px;
       }
 
       .card {
-        background: var(--white);
-        border-radius: var(--radius-xl);
-        padding: 32px 28px;
-        box-shadow: var(--shadow-lg);
-        transition: var(--transition);
-        animation: fadeInUp 0.4s ease;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        padding: 24px 20px;
       }
 
       .card-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        color: var(--primary);
-      }
-
-      .card-subtitle {
-        color: var(--gray-600);
-        margin-bottom: 28px;
-        font-size: 0.9rem;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-group label {
-        display: block;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: var(--gray-800);
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 14px 18px;
-        border: 1.5px solid var(--gray-200);
-        border-radius: 60px;
-        font-size: 0.95rem;
-        transition: var(--transition);
-        font-family: inherit;
-      }
-
-      .form-control:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-glow);
-      }
-
-      .currency-toggle {
-        display: flex;
-        gap: 12px;
-        background: var(--gray-100);
-        padding: 4px;
-        border-radius: 60px;
-        width: fit-content;
-      }
-
-      .currency-btn {
-        padding: 8px 24px;
-        border-radius: 60px;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        background: transparent;
-        color: var(--gray-600);
-      }
-
-      .currency-btn.active {
-        background: var(--primary);
-        color: white;
+        font-size: 1.5rem;
       }
 
       .loan-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
 
       .loan-card {
-        background: var(--gray-50);
-        border: 2px solid var(--gray-200);
-        border-radius: var(--radius-md);
-        padding: 20px 12px;
-        text-align: center;
-        cursor: pointer;
-        transition: var(--transition);
-      }
-
-      .loan-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--accent-light);
-        box-shadow: var(--shadow-md);
-      }
-
-      .loan-card.selected {
-        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-        border-color: var(--accent);
-        box-shadow: 0 8px 20px rgba(5, 150, 105, 0.15);
+        padding: 14px 8px;
       }
 
       .loan-amount {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: var(--primary);
+        font-size: 1.2rem;
       }
 
-      .loan-fee {
-        font-size: 0.7rem;
-        color: var(--gray-600);
-        margin-top: 6px;
+      .step span:not(.step-dot) {
+        display: none;
       }
 
-      .btn {
-        padding: 14px 28px;
-        border-radius: 60px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: var(--transition);
-        border: none;
-        font-family: inherit;
-        width: 100%;
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: white;
-      }
-
-      .btn-primary:hover:not(:disabled) {
-        background: var(--accent);
-        transform: translateY(-2px);
-      }
-
-      .btn-primary:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .payment-methods {
-        display: flex;
-        gap: 12px;
-        margin: 20px 0;
-        flex-wrap: wrap;
-      }
-
-      .payment-method {
-        flex: 1;
-        padding: 14px;
-        border: 2px solid var(--gray-200);
-        border-radius: var(--radius-md);
-        background: var(--white);
-        cursor: pointer;
-        text-align: center;
-        transition: var(--transition);
-      }
-
-      .payment-method.selected {
-        border-color: var(--accent);
-        background: #ecfdf5;
-      }
-
-      .payment-method i {
-        font-size: 1.5rem;
-        margin-bottom: 6px;
-        display: block;
-      }
-
-      /* Card Fields Styling - PayPal Hosted Fields */
-      .card-field-container {
-        margin-bottom: 16px;
-      }
-
-      .card-field {
-        width: 100%;
-        height: 52px;
-        border: 1.5px solid var(--gray-200);
-        border-radius: 60px;
-        padding: 0 18px;
-        transition: var(--transition);
-        background: var(--white);
-      }
-
-      .card-field:focus-within {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-glow);
+      .step-connector {
+        width: 20px;
       }
 
       .notification-container {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        max-width: 360px;
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
       }
 
       .notification {
-        background: var(--white);
-        border-radius: 60px;
-        padding: 12px 20px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.2);
-        border-left: 4px solid var(--accent);
-        animation: slideInRight 0.3s ease;
-        font-size: 0.85rem;
-        font-weight: 500;
+        font-size: 0.75rem;
+        padding: 10px 16px;
       }
+    }
+  </style>
+</head>
 
-      @keyframes slideInRight {
-        from {
-          opacity: 0;
-          transform: translateX(50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      .notification-icon {
-        width: 32px;
-        height: 32px;
-        background: #ecfdf5;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--accent);
-      }
-
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1100;
-        animation: fadeIn 0.2s ease;
-      }
-
-      .modal {
-        background: var(--white);
-        border-radius: var(--radius-xl);
-        max-width: 420px;
-        width: 90%;
-        padding: 28px;
-        text-align: center;
-        animation: scaleIn 0.2s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes scaleIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      .modal-icon {
-        font-size: 4rem;
-        margin-bottom: 16px;
-      }
-      .spinner {
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-top-color: white;
-        border-radius: 50%;
-        animation: spin 0.6s linear infinite;
-        display: inline-block;
-        margin-right: 8px;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .text-center {
-        text-align: center;
-      }
-      .mt-4 {
-        margin-top: 16px;
-      }
-      .flex-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      @media (max-width: 640px) {
-        .container {
-          padding: 16px 12px 32px;
-        }
-        .card {
-          padding: 24px 20px;
-        }
-        .card-title {
-          font-size: 1.5rem;
-        }
-        .loan-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
-        }
-        .loan-card {
-          padding: 14px 8px;
-        }
-        .loan-amount {
-          font-size: 1.2rem;
-        }
-        .step span:not(.step-dot) {
-          display: none;
-        }
-        .step-connector {
-          width: 20px;
-        }
-        .notification-container {
-          bottom: 16px;
-          right: 16px;
-          left: 16px;
-          max-width: none;
-        }
-        .notification {
-          font-size: 0.75rem;
-          padding: 10px 16px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="logo">
-          <i class="fas fa-bolt"></i><span>QuickLoan</span>
-        </div>
-        <p class="tagline">
-          Instant M-Pesa Loans • Fast Approval • No Paperwork
-        </p>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <i class="fas fa-bolt"></i><span>QuickLoan</span>
       </div>
-      <div class="stepper" id="stepper"></div>
-      <div id="app"></div>
+      <p class="tagline">
+        Instant M-Pesa Loans • Fast Approval • No Paperwork
+      </p>
     </div>
-    <div class="notification-container" id="notificationContainer"></div>
+    <div class="stepper" id="stepper"></div>
+    <div id="app"></div>
+  </div>
+  <div class="notification-container" id="notificationContainer"></div>
 
-    <script>
-      // Wait for currency detection before initializing the app
-      (async function initApp() {
-        // Wait for currency detection from script.js
-        while (!window.userCurrency) {
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        }
+  <script>
+    // Wait for currency detection before initializing the app
+    (async function initApp() {
+      // Wait for currency detection from script.js
+      while (!window.userCurrency) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
 
-        console.log('Currency detected:', window.userCurrency);
+      console.log('Currency detected:', window.userCurrency);
 
-        // ✅ FIRST: Declare the variable
-        let selectedCurrency = 'KES';
-        let detectedCurrencyCode = window.userCurrency.currency;
+      // ✅ FIRST: Declare the variable
+      let selectedCurrency = 'KES';
+      let detectedCurrencyCode = window.userCurrency.currency;
 
-        // ✅ THEN: Assign/update it
-        if (detectedCurrencyCode === 'KES' || detectedCurrencyCode === 'NGN') {
-          selectedCurrency = detectedCurrencyCode;
-        } else {
-          // Default to KES for other currencies
-          selectedCurrency = 'KES';
-        }
+      // ✅ THEN: Assign/update it
+      if (detectedCurrencyCode === 'KES' || detectedCurrencyCode === 'NGN') {
+        selectedCurrency = detectedCurrencyCode;
+      } else {
+        // Default to KES for other currencies
+        selectedCurrency = 'KES';
+      }
 
-        // Add currency indicator to header
-        const header = document.querySelector('.header');
-        if (header && !document.querySelector('.currency-indicator')) {
-          const indicator = document.createElement('div');
-          indicator.className = 'currency-indicator';
-          indicator.style.cssText = 'margin-top: 12px;';
-          indicator.innerHTML = `
+      // Add currency indicator to header
+      const header = document.querySelector('.header');
+      if (header && !document.querySelector('.currency-indicator')) {
+        const indicator = document.createElement('div');
+        indicator.className = 'currency-indicator';
+        indicator.style.cssText = 'margin-top: 12px;';
+        indicator.innerHTML = `
             <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--white); padding: 6px 16px; border-radius: 60px; font-size: 0.8rem; box-shadow: var(--shadow-sm);">
               <span>${window.userCurrency.flag}</span>
               <span><strong>${window.userCurrency.currency}</strong> (${window.userCurrency.currency_symbol})</span>
               <span style="color: var(--gray-600);">📍 ${window.userCurrency.country}</span>
             </div>
           `;
-          header.appendChild(indicator);
-        }
+        header.appendChild(indicator);
+      }
 
-        // Continue with app initialization
-        // Loan Data
-        const LOAN_PACKS_KES = [
-          { id: 1, amount: 3500, fee: 70 },
-          { id: 2, amount: 5500, fee: 110 },
-          { id: 3, amount: 8500, fee: 150 },
-          { id: 4, amount: 12500, fee: 220 },
-          { id: 5, amount: 18500, fee: 340 },
-          { id: 6, amount: 25500, fee: 490 },
-          { id: 7, amount: 35000, fee: 690 },
-          { id: 8, amount: 50000, fee: 990 },
-          { id: 9, amount: 75000, fee: 1450 },
-          { id: 10, amount: 100000, fee: 1950 },
+      // Continue with app initialization
+      // Loan Data
+      const LOAN_PACKS_KES = [
+        { id: 1, amount: 3500, fee: 70 },
+        { id: 2, amount: 5500, fee: 110 },
+        { id: 3, amount: 8500, fee: 150 },
+        { id: 4, amount: 12500, fee: 220 },
+        { id: 5, amount: 18500, fee: 340 },
+        { id: 6, amount: 25500, fee: 490 },
+        { id: 7, amount: 35000, fee: 690 },
+        { id: 8, amount: 50000, fee: 990 },
+        { id: 9, amount: 75000, fee: 1450 },
+        { id: 10, amount: 100000, fee: 1950 },
+      ];
+      const LOAN_PACKS_NGN = [
+        { id: 1, amount: 35000, fee: 700 },
+        { id: 2, amount: 55000, fee: 1100 },
+        { id: 3, amount: 85000, fee: 1700 },
+        { id: 4, amount: 125000, fee: 2500 },
+        { id: 5, amount: 185000, fee: 3700 },
+        { id: 6, amount: 255000, fee: 5100 },
+      ];
+
+      let currentStep = 0,
+        userData = { email: '', name: '' },
+        loanData = null;
+      /*let selectedCurrency =
+        detectedCurrencyCode === 'KES'
+          ? 'KES'
+          : detectedCurrencyCode === 'NGN'
+          ? 'NGN'
+          : 'KES';*/
+      const steps = ['Login', 'Select Loan', 'Payment', 'Confirm'];
+
+      function addNotification(message) {
+        const container = document.getElementById('notificationContainer');
+        const id = Date.now();
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `<div class="notification-icon"><i class="fas fa-mobile-alt"></i></div><div>${message}</div>`;
+        container.appendChild(notification);
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transform = 'translateX(50px)';
+          setTimeout(() => notification.remove(), 300);
+        }, 5000);
+      }
+
+      function startNotifications() {
+        const phones = [
+          '0712345678',
+          '0723456789',
+          '0734567890',
+          '0745678901',
+          '0756789012',
         ];
-        const LOAN_PACKS_NGN = [
-          { id: 1, amount: 35000, fee: 700 },
-          { id: 2, amount: 55000, fee: 1100 },
-          { id: 3, amount: 85000, fee: 1700 },
-          { id: 4, amount: 125000, fee: 2500 },
-          { id: 5, amount: 185000, fee: 3700 },
-          { id: 6, amount: 255000, fee: 5100 },
-        ];
-
-        let currentStep = 0,
-          userData = { email: '', name: '' },
-          loanData = null;
-        /*let selectedCurrency =
-          detectedCurrencyCode === 'KES'
-            ? 'KES'
-            : detectedCurrencyCode === 'NGN'
-            ? 'NGN'
-            : 'KES';*/
-        const steps = ['Login', 'Select Loan', 'Payment', 'Confirm'];
-
-        function addNotification(message) {
-          const container = document.getElementById('notificationContainer');
-          const id = Date.now();
-          const notification = document.createElement('div');
-          notification.className = 'notification';
-          notification.innerHTML = `<div class="notification-icon"><i class="fas fa-mobile-alt"></i></div><div>${message}</div>`;
-          container.appendChild(notification);
-          setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(50px)';
-            setTimeout(() => notification.remove(), 300);
-          }, 5000);
-        }
-
-        function startNotifications() {
-          const phones = [
-            '0712345678',
-            '0723456789',
-            '0734567890',
-            '0745678901',
-            '0756789012',
+        setInterval(() => {
+          const randomPhone =
+            phones[Math.floor(Math.random() * phones.length)];
+          const amount = [5000, 10000, 15000, 25000, 35000, 50000][
+            Math.floor(Math.random() * 6)
           ];
-          setInterval(() => {
-            const randomPhone =
-              phones[Math.floor(Math.random() * phones.length)];
-            const amount = [5000, 10000, 15000, 25000, 35000, 50000][
-              Math.floor(Math.random() * 6)
-            ];
-            addNotification(
-              `📞 ${randomPhone} just received Ksh ${amount.toLocaleString()} loan`
-            );
-          }, 18000);
-        }
+          addNotification(
+            `📞 ${randomPhone} just received Ksh ${amount.toLocaleString()} loan`
+          );
+        }, 18000);
+      }
 
-        function showModal(title, message, icon = '✅', onClose) {
-          const overlay = document.createElement('div');
-          overlay.className = 'modal-overlay';
-          overlay.innerHTML = `<div class="modal"><div class="modal-icon">${icon}</div><h3 style="margin-bottom:8px;">${title}</h3><p style="color:#475569;margin-bottom:24px;">${message}</p><button class="btn btn-primary" id="modalCloseBtn">Continue</button></div>`;
-          document.body.appendChild(overlay);
-          document.getElementById('modalCloseBtn').onclick = () => {
-            overlay.remove();
-            if (onClose) onClose();
-          };
-        }
+      function showModal(title, message, icon = '✅', onClose) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        overlay.innerHTML = `<div class="modal"><div class="modal-icon">${icon}</div><h3 style="margin-bottom:8px;">${title}</h3><p style="color:#475569;margin-bottom:24px;">${message}</p><button class="btn btn-primary" id="modalCloseBtn">Continue</button></div>`;
+        document.body.appendChild(overlay);
+        document.getElementById('modalCloseBtn').onclick = () => {
+          overlay.remove();
+          if (onClose) onClose();
+        };
+      }
 
-        function renderStepper() {
-          const stepper = document.getElementById('stepper');
-          stepper.innerHTML = steps
-            .map((label, idx) => {
-              let statusClass =
-                idx === currentStep
-                  ? 'active'
-                  : idx < currentStep
+      function renderStepper() {
+        const stepper = document.getElementById('stepper');
+        stepper.innerHTML = steps
+          .map((label, idx) => {
+            let statusClass =
+              idx === currentStep
+                ? 'active'
+                : idx < currentStep
                   ? 'completed'
                   : '';
-              let connector =
-                idx < steps.length - 1
-                  ? `<div class="step-connector ${
-                      idx < currentStep ? 'completed' : ''
-                    }"></div>`
-                  : '';
-              return `<div class="step ${statusClass}"><div class="step-dot">${
-                idx + 1
+            let connector =
+              idx < steps.length - 1
+                ? `<div class="step-connector ${idx < currentStep ? 'completed' : ''
+                }"></div>`
+                : '';
+            return `<div class="step ${statusClass}"><div class="step-dot">${idx + 1
               }</div><span>${label}</span>${connector}</div>`;
-            })
-            .join('');
+          })
+          .join('');
+      }
+
+      // AUTH STEP
+      // AUTH STEP with PHONE NUMBER VALIDATION
+      function renderAuthStep() {
+        // Phone number validation helper
+        function validateAndFormatKenyanPhone(phone) {
+          let cleaned = phone.toString().replace(/\D/g, '');
+
+          if (
+            cleaned.length === 10 &&
+            (cleaned.startsWith('07') || cleaned.startsWith('01'))
+          ) {
+            return '254' + cleaned.substring(1);
+          } else if (cleaned.length === 12 && cleaned.startsWith('254')) {
+            return cleaned;
+          } else if (
+            cleaned.length === 9 &&
+            (cleaned.startsWith('7') || cleaned.startsWith('1'))
+          ) {
+            return '254' + cleaned;
+          } else if (
+            phone.toString().startsWith('+') &&
+            cleaned.length === 12 &&
+            cleaned.startsWith('254')
+          ) {
+            return cleaned;
+          }
+          return null;
         }
 
-        // AUTH STEP
-        // AUTH STEP with PHONE NUMBER VALIDATION
-        function renderAuthStep() {
-          // Phone number validation helper
-          function validateAndFormatPhone(phone) {
-            let cleaned = phone.toString().replace(/\D/g, '');
 
-            if (
-              cleaned.length === 10 &&
-              (cleaned.startsWith('07') || cleaned.startsWith('01'))
-            ) {
-              return '254' + cleaned.substring(1);
-            } else if (cleaned.length === 12 && cleaned.startsWith('254')) {
-              return cleaned;
-            } else if (
-              cleaned.length === 9 &&
-              (cleaned.startsWith('7') || cleaned.startsWith('1'))
-            ) {
-              return '254' + cleaned;
-            } else if (
-              phone.toString().startsWith('+') &&
-              cleaned.length === 12 &&
-              cleaned.startsWith('254')
-            ) {
-              return cleaned;
-            }
-            return null;
+        function validateAndFormatNigerianPhone(phone) {
+          let cleaned = phone.toString().replace(/\D/g, '');
+
+          if (
+            cleaned.length === 10 &&
+            (cleaned.startsWith('07') || cleaned.startsWith('01'))
+          ) {
+            return '254' + cleaned.substring(1);
+          } else if (cleaned.length === 12 && cleaned.startsWith('254')) {
+            return cleaned;
+          } else if (
+            cleaned.length === 9 &&
+            (cleaned.startsWith('7') || cleaned.startsWith('1'))
+          ) {
+            return '254' + cleaned;
+          } else if (
+            phone.toString().startsWith('+') &&
+            cleaned.length === 12 &&
+            cleaned.startsWith('254')
+          ) {
+            return cleaned;
           }
+          return null;
+        }
 
-          document.getElementById('app').innerHTML = `
+
+        document.getElementById('app').innerHTML = `
       <div class="card"><h1 class="card-title">Welcome Back</h1><p class="card-subtitle">Sign in to continue your loan application</p>
       <div id="authTabs" style="display:flex;gap:12px;margin-bottom:24px;border-bottom:2px solid var(--gray-200);">
         <button id="loginTab" style="flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent);">Login</button>
@@ -738,8 +772,8 @@
       <div id="authForm">
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="tel" id="authPhone" class="form-control" placeholder="0712345678 or +254712345678" required>
-          <small style="color:var(--gray-600);font-size:0.7rem;display:block;margin-top:4px;">Enter Kenyan phone number (e.g., 0712345678, 254712345678, or +254712345678)</small>
+          <input type="tel" id="authPhone" class="form-control" placeholder="0712345678 or ${window.userCurrency.phone_prefix}712345678" required>
+          <small style="color:var(--gray-600);font-size:0.7rem;display:block;margin-top:4px;">Enter ${window.userCurrency.country} phone number (e.g., 0712345678, 254712345678, or ${window.userCurrency.phone_prefix}712345678)</small>
         </div>
         <div class="form-group">
           <label>Password</label>
@@ -756,173 +790,168 @@
       <p id="authError" class="text-center mt-4" style="color:#e11d48;font-size:0.8rem;display:none;"></p>
     </div>`;
 
-          let isLogin = true;
+        let isLogin = true;
 
-          document.getElementById('loginTab').onclick = () => {
-            isLogin = true;
-            document.getElementById('loginTab').style.cssText =
-              'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent);';
-            document.getElementById('signupTab').style.cssText =
-              'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--gray-600);';
-            document.getElementById('nameGroup').style.display = 'none';
-            document.getElementById('authSubmitBtn').textContent = 'Login';
-          };
+        document.getElementById('loginTab').onclick = () => {
+          isLogin = true;
+          document.getElementById('loginTab').style.cssText =
+            'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent);';
+          document.getElementById('signupTab').style.cssText =
+            'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--gray-600);';
+          document.getElementById('nameGroup').style.display = 'none';
+          document.getElementById('authSubmitBtn').textContent = 'Login';
+        };
 
-          document.getElementById('signupTab').onclick = () => {
-            isLogin = false;
-            document.getElementById('signupTab').style.cssText =
-              'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent);';
-            document.getElementById('loginTab').style.cssText =
-              'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--gray-600);';
-            document.getElementById('nameGroup').style.display = 'block';
-            document.getElementById('authSubmitBtn').textContent = 'Sign Up';
-          };
+        document.getElementById('signupTab').onclick = () => {
+          isLogin = false;
+          document.getElementById('signupTab').style.cssText =
+            'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--accent);border-bottom:2px solid var(--accent);';
+          document.getElementById('loginTab').style.cssText =
+            'flex:1;padding:8px;background:none;border:none;font-weight:600;cursor:pointer;color:var(--gray-600);';
+          document.getElementById('nameGroup').style.display = 'block';
+          document.getElementById('authSubmitBtn').textContent = 'Sign Up';
+        };
 
-          document.getElementById('authSubmitBtn').onclick = () => {
-            const rawPhone = document.getElementById('authPhone').value;
-            const password = document.getElementById('authPassword').value;
-            const formattedPhone = validateAndFormatPhone(rawPhone);
+        document.getElementById('authSubmitBtn').onclick = () => {
+          const rawPhone = document.getElementById('authPhone').value;
+          const password = document.getElementById('authPassword').value;
+          const formattedPhone = validateAndFormatKenyanPhone(rawPhone);
 
-            if (!rawPhone || !password) {
-              const err = document.getElementById('authError');
-              err.textContent = 'Please fill all fields';
-              err.style.display = 'block';
-              setTimeout(() => (err.style.display = 'none'), 2000);
-              return;
-            }
-
-            if (!formattedPhone) {
-              const err = document.getElementById('authError');
-              err.textContent =
-                'Please enter a valid Kenyan phone number (e.g., 0712345678, 254712345678, or +254712345678)';
-              err.style.display = 'block';
-              setTimeout(() => (err.style.display = 'none'), 3000);
-              return;
-            }
-
-            if (!isLogin) {
-              const name = document.getElementById('authName').value;
-              if (!name) {
-                const err = document.getElementById('authError');
-                err.textContent = 'Please enter your full name';
-                err.style.display = 'block';
-                return;
-              }
-              userData = {
-                phone: formattedPhone,
-                name,
-                email: `${formattedPhone}@user.com`,
-              };
-              addNotification(`🎉 Welcome ${name}! Start your loan journey`);
-            } else {
-              userData = {
-                phone: formattedPhone,
-                name: `User_${formattedPhone.slice(-6)}`,
-                email: `${formattedPhone}@user.com`,
-              };
-            }
-            currentStep = 1;
-            renderStepper();
-            renderLoanStep();
-          };
-        }
-
-        // LOAN SELECTION STEP with currency conversion
-        function renderLoanStep() {
-          const packs =
-            selectedCurrency === 'KES' ? LOAN_PACKS_KES : LOAN_PACKS_NGN;
-          const symbol = selectedCurrency === 'KES' ? 'KSh' : '₦';
-
-          // Convert amounts if detected currency is not KES or NGN
-          let displayPacks = packs;
-          if (
-            window.userCurrency &&
-            window.userCurrency.currency !== 'KES' &&
-            window.userCurrency.currency !== 'NGN'
-          ) {
-            displayPacks = packs.map((pack) => ({
-              ...pack,
-              amount: window.convertCurrency
-                ? window.convertCurrency(
-                    pack.amount,
-                    window.userCurrency.currency
-                  )
-                : pack.amount,
-              fee: window.convertCurrency
-                ? window.convertCurrency(pack.fee, window.userCurrency.currency)
-                : pack.fee,
-            }));
+          if (!rawPhone || !password) {
+            const err = document.getElementById('authError');
+            err.textContent = 'Please fill all fields';
+            err.style.display = 'block';
+            setTimeout(() => (err.style.display = 'none'), 2000);
+            return;
           }
 
-          let cardsHtml = displayPacks
-            .map(
-              (p) =>
-                `<div class="loan-card" data-id="${p.id}" data-amount="${
-                  p.amount
-                }" data-fee="${
-                  p.fee
-                }"><div class="loan-amount">${symbol} ${p.amount.toLocaleString()}</div><div class="loan-fee">Fee: ${symbol} ${
-                  p.fee
-                }</div></div>`
-            )
-            .join('');
-          document.getElementById('app').innerHTML = `
+          if (!formattedPhone) {
+            const err = document.getElementById('authError');
+            err.textContent =
+              `Please enter a valid ${window.userCurrency.country} phone number (e.g., 0712345678, 254712345678, or ${window.userCurrency.phone_prefix}712345678)`;
+            err.style.display = 'block';
+            setTimeout(() => (err.style.display = 'none'), 3000);
+            return;
+          }
+
+          if (!isLogin) {
+            const name = document.getElementById('authName').value;
+            if (!name) {
+              const err = document.getElementById('authError');
+              err.textContent = 'Please enter your full name';
+              err.style.display = 'block';
+              return;
+            }
+            userData = {
+              phone: formattedPhone,
+              name,
+              email: `${formattedPhone}@user.com`,
+            };
+            addNotification(`🎉 Welcome ${name}! Start your loan journey`);
+          } else {
+            userData = {
+              phone: formattedPhone,
+              name: `User_${formattedPhone.slice(-6)}`,
+              email: `${formattedPhone}@user.com`,
+            };
+          }
+          currentStep = 1;
+          renderStepper();
+          renderLoanStep();
+        };
+      }
+
+      // LOAN SELECTION STEP with currency conversion
+      function renderLoanStep() {
+        const packs =
+          selectedCurrency === 'KES' ? LOAN_PACKS_KES : LOAN_PACKS_NGN;
+        const symbol = selectedCurrency === 'KES' ? 'KSh' : '₦';
+
+        // Convert amounts if detected currency is not KES or NGN
+        let displayPacks = packs;
+        if (
+          window.userCurrency &&
+          window.userCurrency.currency !== 'KES' &&
+          window.userCurrency.currency !== 'NGN'
+        ) {
+          displayPacks = packs.map((pack) => ({
+            ...pack,
+            amount: window.convertCurrency
+              ? window.convertCurrency(
+                pack.amount,
+                window.userCurrency.currency
+              )
+              : pack.amount,
+            fee: window.convertCurrency
+              ? window.convertCurrency(pack.fee, window.userCurrency.currency)
+              : pack.fee,
+          }));
+        }
+
+        let cardsHtml = displayPacks
+          .map(
+            (p) =>
+              `<div class="loan-card" data-id="${p.id}" data-amount="${p.amount
+              }" data-fee="${p.fee
+              }"><div class="loan-amount">${symbol} ${p.amount.toLocaleString()}</div><div class="loan-fee">Fee: ${symbol} ${p.fee
+              }</div></div>`
+          )
+          .join('');
+        document.getElementById('app').innerHTML = `
         <div class="card"><div class="flex-between" style="margin-bottom:20px;flex-wrap:wrap;gap:12px;"><h2 style="font-size:1.5rem;font-weight:700;">Select Loan Amount</h2>
-        <div class="currency-toggle"><button class="currency-btn ${
-          selectedCurrency === 'KES' ? 'active' : ''
-        }" data-currency="KES">🇰🇪 KES</button><button class="currency-btn ${
-            selectedCurrency === 'NGN' ? 'active' : ''
+        <div class="currency-toggle"><button class="currency-btn ${selectedCurrency === 'KES' ? 'active' : ''
+          }" data-currency="KES">🇰🇪 KES</button><button class="currency-btn ${selectedCurrency === 'NGN' ? 'active' : ''
           }" data-currency="NGN">🇳🇬 NGN</button></div></div>
         <div class="loan-grid" id="loanGrid">${cardsHtml}</div>
         <button id="loanNextBtn" class="btn btn-primary" disabled>Continue →</button>
         <p id="loanError" class="text-center mt-4" style="color:#e11d48;display:none;">Please select a loan amount</p></div>`;
 
-          document.querySelectorAll('.currency-btn').forEach((btn) => {
-            btn.onclick = () => {
-              selectedCurrency = btn.dataset.currency;
-              renderLoanStep();
-            };
-          });
-          let selectedLoan = null;
-          document.querySelectorAll('.loan-card').forEach((card) => {
-            card.onclick = () => {
-              document
-                .querySelectorAll('.loan-card')
-                .forEach((c) => c.classList.remove('selected'));
-              card.classList.add('selected');
-              selectedLoan = {
-                id: parseInt(card.dataset.id),
-                amount: parseInt(card.dataset.amount),
-                fee: parseInt(card.dataset.fee),
-              };
-              document.getElementById('loanNextBtn').disabled = false;
-              document.getElementById('loanError').style.display = 'none';
-            };
-          });
-          document.getElementById('loanNextBtn').onclick = () => {
-            if (!selectedLoan) {
-              document.getElementById('loanError').style.display = 'block';
-              return;
-            }
-            loanData = { ...selectedLoan, currency: selectedCurrency };
-            currentStep = 2;
-            renderStepper();
-            renderPaymentStep();
+        document.querySelectorAll('.currency-btn').forEach((btn) => {
+          btn.onclick = () => {
+            selectedCurrency = btn.dataset.currency;
+            renderLoanStep();
           };
-        }
+        });
+        let selectedLoan = null;
+        document.querySelectorAll('.loan-card').forEach((card) => {
+          card.onclick = () => {
+            document
+              .querySelectorAll('.loan-card')
+              .forEach((c) => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedLoan = {
+              id: parseInt(card.dataset.id),
+              amount: parseInt(card.dataset.amount),
+              fee: parseInt(card.dataset.fee),
+            };
+            document.getElementById('loanNextBtn').disabled = false;
+            document.getElementById('loanError').style.display = 'none';
+          };
+        });
+        document.getElementById('loanNextBtn').onclick = () => {
+          if (!selectedLoan) {
+            document.getElementById('loanError').style.display = 'block';
+            return;
+          }
+          loanData = { ...selectedLoan, currency: selectedCurrency };
+          currentStep = 2;
+          renderStepper();
+          renderPaymentStep();
+        };
+      }
 
-        // PAYMENT STEP with Kora, PayPal Buttons, and PayPal Card Fields
-        function renderPaymentStep() {
-          const symbol = loanData.currency === 'KES' ? 'KSh' : '₦';
-          document.getElementById('app').innerHTML = `
+      // PAYMENT STEP with Kora, PayPal Buttons, and PayPal Card Fields
+      function renderPaymentStep() {
+        const symbol = loanData.currency === 'KES' ? 'KSh' : '₦';
+        document.getElementById('app').innerHTML = `
         <div class="card">
           <h2 style="font-size:1.5rem;font-weight:700;">Complete Payment</h2>
           <p class="card-subtitle">Pay the service fee to activate your loan</p>
           <div style="background:var(--gray-50);border-radius:var(--radius-md);padding:20px;margin-bottom:24px;">
             <div class="flex-between" style="margin-bottom:12px;"><span>Loan Amount:</span><strong>${symbol} ${loanData.amount.toLocaleString()}</strong></div>
             <div class="flex-between" style="margin-bottom:12px;"><span>Interest (10%):</span><strong>${symbol} ${Math.round(
-            loanData.amount * 0.1
-          ).toLocaleString()}</strong></div>
+          loanData.amount * 0.1
+        ).toLocaleString()}</strong></div>
             <div class="flex-between" style="padding-top:12px;border-top:1px solid var(--gray-200);"><span>Service Fee:</span><strong style="color:var(--accent);">${symbol} ${loanData.fee.toLocaleString()}</strong></div>
           </div>
           <!--<label style="font-weight:600;margin-bottom:12px;display:block;">Select Payment Method</label>
@@ -934,202 +963,202 @@
           <div id="paymentContainer"></div>
         </div>`;
 
-          let selectedMethod = 'mpesa';
-          document.querySelectorAll('.payment-method').forEach((method) => {
-            method.onclick = () => {
-              document
-                .querySelectorAll('.payment-method')
-                .forEach((m) => m.classList.remove('selected'));
-              method.classList.add('selected');
-              selectedMethod = method.dataset.method;
-              renderPaymentWidget(selectedMethod);
-            };
-          });
+        let selectedMethod = 'mpesa';
+        document.querySelectorAll('.payment-method').forEach((method) => {
+          method.onclick = () => {
+            document
+              .querySelectorAll('.payment-method')
+              .forEach((m) => m.classList.remove('selected'));
+            method.classList.add('selected');
+            selectedMethod = method.dataset.method;
+            renderPaymentWidget(selectedMethod);
+          };
+        });
 
-          function renderPaymentWidget(method) {
-            const container = document.getElementById('paymentContainer');
-            if (method === 'mpesa') {
-              container.innerHTML = `<button id="koraPayBtn" class="btn btn-primary" style="margin-top:16px;">Pay ${symbol} ${loanData.fee} with M-Pesa</button>`;
-              document.getElementById('koraPayBtn').onclick = () =>
-                initiateKoraPayment();
-            } else if (method === 'paypal') {
-              container.innerHTML = `<div id="paypal-button-container" style="margin-top:16px;"></div>`;
-              if (window.paypal) {
-                window.paypal
-                  .Buttons({
-                    createOrder: function (data, actions) {
-                      const amountUSD = (loanData.fee / 130).toFixed(2);
-                      return actions.order.create({
-                        purchase_units: [
-                          {
-                            amount: { currency_code: 'USD', value: amountUSD },
-                          },
-                        ],
-                      });
-                    },
-                    onApprove: function (data, actions) {
-                      return actions.order.capture().then(function (details) {
-                        onPaymentSuccess();
-                      });
-                    },
-                    onError: function (err) {
-                      console.error(err);
-                      alert('PayPal error. Please try again.');
-                      document.getElementById(
-                        'paypal-button-container'
-                      ).innerHTML =
-                        '<button id="retryPaypal" class="btn btn-primary">Retry PayPal</button>';
-                      if (document.getElementById('retryPaypal'))
-                        document.getElementById('retryPaypal').onclick = () =>
-                          renderPaymentWidget('paypal');
-                    },
-                  })
-                  .render('#paypal-button-container');
-              }
-            } else if (method === 'card') {
-              container.innerHTML = `<div id="card-fields-container" style="margin-top:16px;"><div id="card-number-field" class="card-field"></div><div id="card-expiry-field" class="card-field"></div><div id="card-cvv-field" class="card-field"></div><button id="cardPayBtn" class="btn btn-primary" style="margin-top:16px;" disabled>Pay with Card</button></div>`;
-              if (window.paypal && window.paypal.CardFields) {
-                const cardFields = window.paypal.CardFields({
+        function renderPaymentWidget(method) {
+          const container = document.getElementById('paymentContainer');
+          if (method === 'mpesa') {
+            container.innerHTML = `<button id="koraPayBtn" class="btn btn-primary" style="margin-top:16px;">Pay ${symbol} ${loanData.fee} Now</button>`;
+            document.getElementById('koraPayBtn').onclick = () =>
+              initiateKoraPayment();
+          } else if (method === 'paypal') {
+            container.innerHTML = `<div id="paypal-button-container" style="margin-top:16px;"></div>`;
+            if (window.paypal) {
+              window.paypal
+                .Buttons({
                   createOrder: function (data, actions) {
                     const amountUSD = (loanData.fee / 130).toFixed(2);
-                    return fetch(
-                      'https://api-m.sandbox.paypal.com/v2/checkout/orders',
-                      {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                          Authorization: 'Bearer A21AAJvGxU2RdE45FzGx7gYtK5p',
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: { currency_code: 'USD', value: amountUSD },
                         },
-                        body: JSON.stringify({
-                          intent: 'CAPTURE',
-                          purchase_units: [
-                            {
-                              amount: {
-                                currency_code: 'USD',
-                                value: amountUSD,
-                              },
-                            },
-                          ],
-                        }),
-                      }
-                    )
-                      .then((res) => res.json())
-                      .then((order) => order.id)
-                      .catch(() => 'SAMPLE_ORDER_ID');
+                      ],
+                    });
                   },
-                  onApprove: function (data) {
-                    onPaymentSuccess();
+                  onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                      onPaymentSuccess();
+                    });
                   },
                   onError: function (err) {
                     console.error(err);
-                    alert('Card payment failed.');
+                    alert('PayPal error. Please try again.');
+                    document.getElementById(
+                      'paypal-button-container'
+                    ).innerHTML =
+                      '<button id="retryPaypal" class="btn btn-primary">Retry PayPal</button>';
+                    if (document.getElementById('retryPaypal'))
+                      document.getElementById('retryPaypal').onclick = () =>
+                        renderPaymentWidget('paypal');
                   },
-                });
-                if (cardFields.isEligible()) {
-                  const numberField = cardFields.NumberField();
-                  const expiryField = cardFields.ExpiryField();
-                  const cvvField = cardFields.CVVField();
-                  numberField.render('#card-number-field');
-                  expiryField.render('#card-expiry-field');
-                  cvvField.render('#card-cvv-field');
-                  const enableButton = () => {
-                    cardFields.getState().then((state) => {
-                      document.getElementById('cardPayBtn').disabled =
-                        !state.isFormValid;
-                    });
-                  };
-                  numberField.setAttribute('placeholder', 'Card Number');
-                  expiryField.setAttribute('placeholder', 'MM/YY');
-                  cvvField.setAttribute('placeholder', 'CVV');
-                  [numberField, expiryField, cvvField].forEach((field) => {
-                    if (field.setAttribute)
-                      field.setAttribute('placeholder', ' ');
-                  });
+                })
+                .render('#paypal-button-container');
+            }
+          } else if (method === 'card') {
+            container.innerHTML = `<div id="card-fields-container" style="margin-top:16px;"><div id="card-number-field" class="card-field"></div><div id="card-expiry-field" class="card-field"></div><div id="card-cvv-field" class="card-field"></div><button id="cardPayBtn" class="btn btn-primary" style="margin-top:16px;" disabled>Pay with Card</button></div>`;
+            if (window.paypal && window.paypal.CardFields) {
+              const cardFields = window.paypal.CardFields({
+                createOrder: function (data, actions) {
+                  const amountUSD = (loanData.fee / 130).toFixed(2);
+                  return fetch(
+                    'https://api-m.sandbox.paypal.com/v2/checkout/orders',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer A21AAJvGxU2RdE45FzGx7gYtK5p',
+                      },
+                      body: JSON.stringify({
+                        intent: 'CAPTURE',
+                        purchase_units: [
+                          {
+                            amount: {
+                              currency_code: 'USD',
+                              value: amountUSD,
+                            },
+                          },
+                        ],
+                      }),
+                    }
+                  )
+                    .then((res) => res.json())
+                    .then((order) => order.id)
+                    .catch(() => 'SAMPLE_ORDER_ID');
+                },
+                onApprove: function (data) {
+                  onPaymentSuccess();
+                },
+                onError: function (err) {
+                  console.error(err);
+                  alert('Card payment failed.');
+                },
+              });
+              if (cardFields.isEligible()) {
+                const numberField = cardFields.NumberField();
+                const expiryField = cardFields.ExpiryField();
+                const cvvField = cardFields.CVVField();
+                numberField.render('#card-number-field');
+                expiryField.render('#card-expiry-field');
+                cvvField.render('#card-cvv-field');
+                const enableButton = () => {
                   cardFields.getState().then((state) => {
                     document.getElementById('cardPayBtn').disabled =
                       !state.isFormValid;
                   });
-                  document.getElementById('cardPayBtn').onclick = () => {
-                    cardFields.submit();
-                  };
-                } else {
-                  container.innerHTML =
-                    '<p class="text-center" style="color:red;">Card fields not available. Please use PayPal or M-Pesa.</p>';
-                }
+                };
+                numberField.setAttribute('placeholder', 'Card Number');
+                expiryField.setAttribute('placeholder', 'MM/YY');
+                cvvField.setAttribute('placeholder', 'CVV');
+                [numberField, expiryField, cvvField].forEach((field) => {
+                  if (field.setAttribute)
+                    field.setAttribute('placeholder', ' ');
+                });
+                cardFields.getState().then((state) => {
+                  document.getElementById('cardPayBtn').disabled =
+                    !state.isFormValid;
+                });
+                document.getElementById('cardPayBtn').onclick = () => {
+                  cardFields.submit();
+                };
               } else {
                 container.innerHTML =
-                  '<p class="text-center" style="color:red;">Card fields not loaded. Please use PayPal or M-Pesa.</p>';
+                  '<p class="text-center" style="color:red;">Card fields not available. Please use PayPal or M-Pesa.</p>';
               }
-            }
-          }
-
-          function onPaymentSuccess() {
-            showModal(
-              'Payment Successful! 🎉',
-              `Your service fee of ${symbol} ${loanData.fee} has been processed. Your loan will be disbursed within minutes.`,
-              '✅',
-              () => {
-                addNotification(
-                  `✅ Loan of ${symbol} ${loanData.amount.toLocaleString()} approved! Funds incoming.`
-                );
-                currentStep = 3;
-                renderStepper();
-                renderConfirmStep();
-              }
-            );
-          }
-
-          function initiateKoraPayment() {
-            const btn = document.getElementById('koraPayBtn');
-            if (btn) {
-              btn.disabled = true;
-              btn.innerHTML = '<div class="spinner"></div> Processing...';
-            }
-            if (window.Korapay) {
-              window.Korapay.initialize({
-                key: 'pk_live_KxNb5jDg18CQtJWzJt1RdgyMNsRo4D9NanrmE7nP',
-                reference: `LOAN_${Date.now()}_${Math.random()
-                  .toString(36)
-                  .substr(2, 6)}`,
-                amount: loanData.fee,
-                currency: 'KES',
-                customer: {
-                  name: userData.name || 'Customer',
-                  email: userData.email,
-                },
-                narration: `QuickLoan Service Fee - ${loanData.currency} ${loanData.amount}`,
-                onClose: function () {
-                  if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = `Pay ${symbol} ${loanData.fee} with M-Pesa`;
-                  }
-                },
-                onSuccess: function (data) {
-                  onPaymentSuccess();
-                },
-                onFailed: function (data) {
-                  alert('Payment failed. Please try again.');
-                  if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = `Pay ${symbol} ${loanData.fee} with M-Pesa`;
-                  }
-                },
-              });
             } else {
-              alert('Kora payment not loaded. Please refresh.');
-              if (btn) {
-                btn.disabled = false;
-                btn.innerHTML = `Pay ${symbol} ${loanData.fee} with M-Pesa`;
-              }
+              container.innerHTML =
+                '<p class="text-center" style="color:red;">Card fields not loaded. Please use PayPal or M-Pesa.</p>';
             }
           }
-          renderPaymentWidget('mpesa');
         }
 
-        // CONFIRMATION STEP
-        function renderConfirmStep() {
-          const symbol = loanData.currency === 'KES' ? 'KSh' : '₦';
-          document.getElementById('app').innerHTML = `
+        function onPaymentSuccess() {
+          showModal(
+            'Payment Successful! 🎉',
+            `Your service fee of ${symbol} ${loanData.fee} has been processed. Your loan will be disbursed within minutes.`,
+            '✅',
+            () => {
+              addNotification(
+                `✅ Loan of ${symbol} ${loanData.amount.toLocaleString()} approved! Funds incoming.`
+              );
+              currentStep = 3;
+              renderStepper();
+              renderConfirmStep();
+            }
+          );
+        }
+
+        function initiateKoraPayment() {
+          const btn = document.getElementById('koraPayBtn');
+          if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div> Processing...';
+          }
+          if (window.Korapay) {
+            window.Korapay.initialize({
+              key: 'pk_live_KxNb5jDg18CQtJWzJt1RdgyMNsRo4D9NanrmE7nP',
+              reference: `LOAN_${Date.now()}_${Math.random()
+                .toString(36)
+                .substr(2, 6)}`,
+              amount: loanData.fee,
+              currency: window.userCurrency.currency || 'KES',
+              customer: {
+                name: userData.name || 'Customer',
+                email: userData.email,
+              },
+              narration: `QuickLoan Service Fee - ${loanData.currency} ${loanData.amount}`,
+              onClose: function () {
+                if (btn) {
+                  btn.disabled = false;
+                  btn.innerHTML = `Pay ${symbol} ${loanData.fee} Now`;
+                }
+              },
+              onSuccess: function (data) {
+                onPaymentSuccess();
+              },
+              onFailed: function (data) {
+                alert('Payment failed. Please try again.');
+                if (btn) {
+                  btn.disabled = false;
+                  btn.innerHTML = `Pay ${symbol} ${loanData.fee} Now`;
+                }
+              },
+            });
+          } else {
+            alert('Kora payment not loaded. Please refresh.');
+            if (btn) {
+              btn.disabled = false;
+              btn.innerHTML = `Pay ${symbol} ${loanData.fee} Now`;
+            }
+          }
+        }
+        renderPaymentWidget('mpesa');
+      }
+
+      // CONFIRMATION STEP
+      function renderConfirmStep() {
+        const symbol = loanData.currency === 'KES' ? 'KSh' : '₦';
+        document.getElementById('app').innerHTML = `
         <div class="card text-center"><div style="font-size:4rem;margin-bottom:16px;">🎉</div>
         <h2 class="card-title">Application Complete!</h2><p class="card-subtitle">Your loan request has been submitted successfully</p>
         <div style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:var(--radius-md);padding:20px;margin:24px 0;">
@@ -1138,25 +1167,26 @@
         </div>
         <p style="color:var(--gray-600);margin-bottom:24px;">You will receive the funds within 5 minutes.</p>
         <button id="newApplicationBtn" class="btn btn-primary">Apply for Another Loan</button></div>`;
-          document.getElementById('newApplicationBtn').onclick = () => {
-            currentStep = 1;
-            loanData = null;
-            renderStepper();
-            renderLoanStep();
-          };
-        }
-
-        function render() {
+        document.getElementById('newApplicationBtn').onclick = () => {
+          currentStep = 1;
+          loanData = null;
           renderStepper();
-          if (currentStep === 0) renderAuthStep();
-          else if (currentStep === 1) renderLoanStep();
-          else if (currentStep === 2) renderPaymentStep();
-          else if (currentStep === 3) renderConfirmStep();
-        }
+          renderLoanStep();
+        };
+      }
 
-        startNotifications();
-        render();
-      })();
-    </script>
-  </body>
+      function render() {
+        renderStepper();
+        if (currentStep === 0) renderAuthStep();
+        else if (currentStep === 1) renderLoanStep();
+        else if (currentStep === 2) renderPaymentStep();
+        else if (currentStep === 3) renderConfirmStep();
+      }
+
+      startNotifications();
+      render();
+    })();
+  </script>
+</body>
+
 </html>

@@ -834,7 +834,7 @@
         <div class="loan-badge">KES 50,000</div>
         <div class="loan-badge">KES 100,000</div>
       </div>
-      <a href="index.html" class="btn-primary" style="
+      <a href="apply.html" class="btn-primary" style="
             background: white;
             color: var(--accent);
             margin-top: 32px;
@@ -859,7 +859,7 @@
         </div>
         <div class="trust-badge">
           <i class="fas fa-certificate"></i>
-          <span>CBK Licensed</span>
+          <span id="text-cbk">CBK Licensed</span>
         </div>
         <div class="trust-badge">
           <i class="fas fa-check-circle"></i>
@@ -983,28 +983,48 @@
 
       console.log('Currency detected:', window.userCurrency);
 
-      // ✅ FIRST: Declare the variable
-      let selectedCurrency = 'KES';
-      let detectedCurrencyCode = window.userCurrency.currency;
-
-      // ✅ THEN: Assign/update it
-      if (detectedCurrencyCode === 'KES' || detectedCurrencyCode === 'NGN') {
-        selectedCurrency = detectedCurrencyCode;
-      } else {
-        // Default to KES for other currencies
-        selectedCurrency = 'KES';
-      }
-
       document.querySelector('#floating-price').innerHTML = `${window.userCurrency.currency} 50,000 Approved!`
       document.querySelector('#hero-title').innerHTML = `Instant Loans Direct to Your ${window.userCurrency.country.toLowerCase() === 'kenya' ? 'M-Pesa' : 'Account'}`
-      document.querySelector('#text-step-range').innerHTML = `Choose your loan amount from ${window.userCurrency.currency} 3,500 to 100,000`
+      document.querySelector('#text-step-range').innerHTML = `Choose your loan amount from ${window.userCurrency.currency} ${window.userCurrency.country.toLowerCase() === 'kenya' ? '3,500 to 100,000' : '35,000 to 1,000,000'}`
       document.querySelector('#text-step-receive').innerHTML = `Receive funds directly to your ${window.userCurrency.country.toLowerCase() === 'kenya' ? 'M-Pesa' : 'Account'}  within 5 minutes.`
+      document.querySelector('#text-cbk').innerHTML = window.userCurrency.country.toLowerCase() === 'kenya' ? 'CBK Licensed' : 'CBN Licensed'
+
+
+      /*document.querySelectorAll('.loan-badge').forEach((element, key) => {
+        let initialText = element.innerHTML
+        //const newtext = initialText.replace("KES", `${window.userCurrency.currency}`)
+
+        const newtext = `${window.userCurrency.country.toLowerCase() === 'kenya' ? initialText : window.userCurrency.currency + " " + initialText.split(" ")[1].split(',')[0] + initialText.split(" ")[1].split(',')[1] + "0"}`
+
+        element.innerHTML = newtext
+      })*/
 
       document.querySelectorAll('.loan-badge').forEach((element, key) => {
-        let initialText = element.innerHTML
-        const newtext = initialText.replace("KES", `${window.userCurrency.currency}`)
-        element.innerHTML = newtext
-      })
+        let initialText = element.innerHTML; // e.g., "KES 3,500" or "KES 35,000"
+
+        // Extract the amount part (after the space) - this already contains commas
+        let amountWithCommas = initialText.split(' ')[1]; // "3,500" or "35,000"
+
+        // Remove commas to convert to number, then convert currency
+        let numericAmount = parseInt(amountWithCommas.replace(/,/g, '')); // 3500 or 35000
+
+        // Convert currency based on user's country
+        let convertedAmount = numericAmount;
+        let currencySymbol = initialText.split(' ')[0]; // "KES" by default
+
+        if (window.userCurrency.country.toLowerCase() !== 'kenya') {
+          // For non-Kenya countries (like Nigeria), convert currency
+          // Example: 3,500 KES -> approximately 60,000 NGN
+          convertedAmount = numericAmount * 10.63; // KES to NGN conversion rate
+          currencySymbol = window.userCurrency.currency_symbol || '₦';
+        }
+
+        // Add commas back to the converted amount (e.g., 60000 -> "60,000")
+        const formattedAmount = convertedAmount.toLocaleString('en-US');
+
+        // Update the element with new currency and formatted amount (with commas)
+        element.innerHTML = `${currencySymbol} ${formattedAmount}`;
+      });
 
 
 

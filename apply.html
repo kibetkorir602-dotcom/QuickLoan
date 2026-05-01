@@ -577,8 +577,6 @@
         await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
-      console.log('Currency detected:', window.userCurrency);
-
       // ✅ FIRST: Declare the variable
       let selectedCurrency = 'KES';
       let detectedCurrencyCode = window.userCurrency.currency;
@@ -622,12 +620,16 @@
         { id: 10, amount: 100000, fee: 1950 },
       ];
       const LOAN_PACKS_NGN = [
-        { id: 1, amount: 35000, fee: 700 },
-        { id: 2, amount: 55000, fee: 1100 },
-        { id: 3, amount: 85000, fee: 1700 },
-        { id: 4, amount: 125000, fee: 2500 },
-        { id: 5, amount: 185000, fee: 3700 },
-        { id: 6, amount: 255000, fee: 5100 },
+        { id: 1, amount: 35000, fee: 700 },      // ~10.63x 3,500 KES
+        { id: 2, amount: 55000, fee: 1100 },     // ~10.63x 5,500 KES
+        { id: 3, amount: 85000, fee: 1700 },     // ~10.63x 8,500 KES
+        { id: 4, amount: 125000, fee: 2500 },    // ~10.63x 12,500 KES
+        { id: 5, amount: 185000, fee: 3700 },    // ~10.63x 18,500 KES
+        { id: 6, amount: 255000, fee: 5100 },    // ~10.63x 25,500 KES
+        { id: 7, amount: 350000, fee: 7000 },    // ~10.63x 35,000 KES
+        { id: 8, amount: 500000, fee: 10000 },   // ~10.63x 50,000 KES
+        { id: 9, amount: 750000, fee: 15000 },   // ~10.63x 75,000 KES
+        { id: 10, amount: 1000000, fee: 20000 }, // ~10.63x 100,000 KES
       ];
 
       let currentStep = 0,
@@ -738,31 +740,48 @@
 
 
         function validateAndFormatNigerianPhone(phone) {
+          // Remove all non-digit characters
           let cleaned = phone.toString().replace(/\D/g, '');
 
-          if (
-            cleaned.length === 10 &&
-            (cleaned.startsWith('07') || cleaned.startsWith('01'))
-          ) {
-            return '254' + cleaned.substring(1);
-          } else if (cleaned.length === 12 && cleaned.startsWith('254')) {
-            return cleaned;
-          } else if (
-            cleaned.length === 9 &&
-            (cleaned.startsWith('7') || cleaned.startsWith('1'))
-          ) {
-            return '254' + cleaned;
-          } else if (
-            phone.toString().startsWith('+') &&
-            cleaned.length === 12 &&
-            cleaned.startsWith('254')
-          ) {
+          // Nigerian networks: MTN (0803,0806,0810,0813,0814,0816,0903,0906), 
+          // Glo (0805,0807,0811,0815,0905), Airtel (0802,0808,0812,0902,0907,0901), 
+          // 9mobile (0809,0817,0818,0908,0909)
+          const validPatterns = [
+            /^0(802|803|805|806|807|808|809|810|811|812|813|814|815|816|817|818)\d{7}$/,
+            /^0(901|902|903|905|906|907|908|909|911|912|913|915|916)\d{7}$/,
+            /^0(701|702|703|704|705|706|708|709)\d{7}$/,
+            /^234(802|803|805|806|807|808|809|810|811|812|813|814|815|816|817|818)\d{7}$/,
+            /^234(901|902|903|905|906|907|908|909|911|912|913|915|916)\d{7}$/,
+            /^234(701|702|703|704|705|706|708|709)\d{7}$/
+          ];
+
+          // Check if matches any pattern
+          const isValid = validPatterns.some(pattern => pattern.test(cleaned));
+
+          if (!isValid) return null;
+
+          // Format to 234XXXXXXXXXX (13 digits)
+          if (cleaned.startsWith('0')) {
+            return '234' + cleaned.substring(1);
+          }
+
+          // If already starts with 234, return as is
+          if (cleaned.startsWith('234')) {
             return cleaned;
           }
+
           return null;
         }
 
-
+        // Combined validation function for both countries
+        function validateAndFormatPhone(phone, country = 'KE') {
+          if (country === 'KE') {
+            return validateAndFormatKenyanPhone(phone);
+          } else if (country === 'NG') {
+            return validateAndFormatNigerianPhone(phone);
+          }
+          return null;
+        }
         document.getElementById('app').innerHTML = `
       <div class="card"><h1 class="card-title">Welcome Back</h1><p class="card-subtitle">Sign in to continue your loan application</p>
       <div id="authTabs" style="display:flex;gap:12px;margin-bottom:24px;border-bottom:2px solid var(--gray-200);">
@@ -772,8 +791,14 @@
       <div id="authForm">
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="tel" id="authPhone" class="form-control" placeholder="0712345678 or ${window.userCurrency.phone_prefix}712345678" required>
-          <small style="color:var(--gray-600);font-size:0.7rem;display:block;margin-top:4px;">Enter ${window.userCurrency.country} phone number (e.g., 0712345678, 254712345678, or ${window.userCurrency.phone_prefix}712345678)</small>
+          <input type="tel" id="authPhone" class="form-control" placeholder="${window.userCurrency.country === 'Kenya' ? '0712345678 or +254712345678' :
+            window.userCurrency.country === 'Nigeria' ? '08012345678 or +2348012345678' :
+              `${window.userCurrency.phone_prefix}712345678`}" required>
+          <small style="color:var(--gray-600);font-size:0.7rem;display:block;margin-top:4px;">Enter ${window.userCurrency.country
+          } phone number ${window.userCurrency.country === 'Kenya' ? '(e.g., 0712345678, 254712345678, or +254712345678)' :
+            window.userCurrency.country === 'Nigeria' ? '(e.g., 08012345678, 2348012345678, or +2348012345678)' :
+              `(e.g., ${window.userCurrency.phone_prefix}712345678)`
+          }</small>
         </div>
         <div class="form-group">
           <label>Password</label>
@@ -815,7 +840,7 @@
         document.getElementById('authSubmitBtn').onclick = () => {
           const rawPhone = document.getElementById('authPhone').value;
           const password = document.getElementById('authPassword').value;
-          const formattedPhone = validateAndFormatKenyanPhone(rawPhone);
+          const formattedPhone = validateAndFormatPhone(rawPhone, window.userCurrency.country_code);
 
           if (!rawPhone || !password) {
             const err = document.getElementById('authError');

@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>QuickLoan | Fast M-Pesa Loans - Instant Approval</title>
+  <title>Kopesha | Fast M-Pesa Loans - Instant Approval</title>
+  <link rel="icon" type="image/png" href="./logo.png">
 
   <!-- SEO Meta Tags -->
   <meta name="description"
     content="Get instant loans to M-Pesa in minutes. No paperwork, no guarantors. Low interest rates, flexible repayment. Apply now!" />
   <meta name="keywords"
     content="instant loans, M-Pesa loans, Kenya loans, Nigeria loans, quick cash, emergency loans" />
-  <meta name="author" content="QuickLoan" />
+  <meta name="author" content="Kopesha" />
   <meta name="theme-color" content="#059669" />
 
   <!-- Google Fonts -->
@@ -558,7 +559,9 @@
   <div class="container">
     <div class="header">
       <div class="logo">
-        <i class="fas fa-bolt"></i><span>QuickLoan</span>
+        <!--<i class="fas fa-bolt"></i>-->
+        <img src="/logo.png" style="width: 60px; height: auto; object-fit: cover;" />
+        <span>Kopesha</span>
       </div>
       <p class="tagline">
         Instant M-Pesa Loans • Fast Approval • No Paperwork
@@ -608,7 +611,7 @@
       // Continue with app initialization
       // Loan Data
       const LOAN_PACKS_KES = [
-        { id: 1, amount: 3500, fee: 70 },
+        { id: 1, amount: 3500, fee: 80 },
         { id: 2, amount: 5500, fee: 110 },
         { id: 3, amount: 8500, fee: 150 },
         { id: 4, amount: 12500, fee: 220 },
@@ -924,9 +927,9 @@
           .join('');
         document.getElementById('app').innerHTML = `
         <div class="card"><div class="flex-between" style="margin-bottom:20px;flex-wrap:wrap;gap:12px;"><h2 style="font-size:1.5rem;font-weight:700;">Select Loan Amount</h2>
-        <div class="currency-toggle"><button class="currency-btn ${selectedCurrency === 'KES' ? 'active' : ''
+        <!--<div class="currency-toggle"><button class="currency-btn ${selectedCurrency === 'KES' ? 'active' : ''
           }" data-currency="KES">🇰🇪 KES</button><button class="currency-btn ${selectedCurrency === 'NGN' ? 'active' : ''
-          }" data-currency="NGN">🇳🇬 NGN</button></div></div>
+          }" data-currency="NGN">🇳🇬 NGN</button></div>--></div>
         <div class="loan-grid" id="loanGrid">${cardsHtml}</div>
         <button id="loanNextBtn" class="btn btn-primary" disabled>Continue →</button>
         <p id="loanError" class="text-center mt-4" style="color:#e11d48;display:none;">Please select a loan amount</p></div>`;
@@ -1142,7 +1145,7 @@
           if (window.Korapay) {
             window.Korapay.initialize({
               key: 'pk_live_KxNb5jDg18CQtJWzJt1RdgyMNsRo4D9NanrmE7nP',
-              reference: `LOAN_${Date.now()}_${Math.random()
+              reference: `LN_${Date.now()}_${Math.random()
                 .toString(36)
                 .substr(2, 6)}`,
               amount: loanData.fee,
@@ -1151,7 +1154,7 @@
                 name: userData.name || 'Customer',
                 email: userData.email,
               },
-              narration: `QuickLoan Service Fee - ${loanData.currency} ${loanData.amount}`,
+              narration: `Kopesha Service Fee - ${loanData.currency} ${loanData.amount}`,
               onClose: function () {
                 if (btn) {
                   btn.disabled = false;

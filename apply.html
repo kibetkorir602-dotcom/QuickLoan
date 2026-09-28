@@ -599,7 +599,7 @@
         indicator.className = 'currency-indicator';
         indicator.style.cssText = 'margin-top: 12px;';
         indicator.innerHTML = `
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--white); padding: 6px 16px; border-radius: 60px; font-size: 0.8rem; box-shadow: var(--shadow-sm);">
+            <div style="display: none; align-items: center; gap: 8px; background: var(--white); padding: 6px 16px; border-radius: 60px; font-size: 0.8rem; box-shadow: var(--shadow-sm);">
               <span>${window.userCurrency.flag}</span>
               <span><strong>${window.userCurrency.currency}</strong> (${window.userCurrency.currency_symbol})</span>
               <span style="color: var(--gray-600);">📍 ${window.userCurrency.country}</span>
